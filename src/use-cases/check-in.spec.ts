@@ -1,8 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { InMemoryCkeckInRepository } from '@/repositories/in-memory/in-memory-check-in-repository'
-import { CheckInUseCase } from './check-in-'
+import { CheckInUseCase } from './check-in'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
-import { Decimal } from '@prisma/client/runtime/library'
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 import { MaxDistanceError } from './errors/max-distance-error'
 
@@ -38,7 +37,7 @@ describe('Check In Use Case', () => {
       gymId: 'gym-id',
       userId: 'user-id',
       userLatitude: -15.7531375,
-      userLongitudde: -48.2891368,
+      userLongitude: -48.2891368,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -51,7 +50,7 @@ describe('Check In Use Case', () => {
       gymId: 'gym-id',
       userId: 'user-id',
       userLatitude: -15.7531375,
-      userLongitudde: -48.2891368,
+      userLongitude: -48.2891368,
     })
 
     await expect(() =>
@@ -59,7 +58,7 @@ describe('Check In Use Case', () => {
         gymId: 'gym-id',
         userId: 'user-id',
         userLatitude: -15.7531375,
-        userLongitudde: -48.2891368,
+        userLongitude: -48.2891368,
       }),
     ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
@@ -71,7 +70,7 @@ describe('Check In Use Case', () => {
       gymId: 'gym-id',
       userId: 'user-id',
       userLatitude: -15.7531375,
-      userLongitudde: -48.2891368,
+      userLongitude: -48.2891368,
     })
 
     vi.setSystemTime(new Date(2023, 0, 21, 8, 0, 0))
@@ -80,7 +79,7 @@ describe('Check In Use Case', () => {
       gymId: 'gym-id',
       userId: 'user-id',
       userLatitude: -15.7531375,
-      userLongitudde: -48.2891368,
+      userLongitude: -48.2891368,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -101,7 +100,7 @@ describe('Check In Use Case', () => {
         gymId: 'gym-id-1',
         userId: 'user-id',
         userLatitude: -15.7531375,
-        userLongitudde: -48.2891368,
+        userLongitude: -48.2891368,
       }),
     ).rejects.toBeInstanceOf(MaxDistanceError)
   })

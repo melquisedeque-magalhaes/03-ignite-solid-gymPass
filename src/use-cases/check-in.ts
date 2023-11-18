@@ -10,7 +10,7 @@ interface CheckInUseCaseRequest {
   userId: string
   gymId: string
   userLatitude: number
-  userLongitudde: number
+  userLongitude: number
 }
 
 interface CheckInUseCaseResponse {
@@ -27,7 +27,7 @@ export class CheckInUseCase {
     gymId,
     userId,
     userLatitude,
-    userLongitudde,
+    userLongitude,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
     const gym = await this.gymsRepository.findById(gymId)
 
@@ -38,7 +38,7 @@ export class CheckInUseCase {
     const distance = getDistanceBetweenCoordinates({
       from: {
         latitude: userLatitude,
-        longitude: userLongitudde,
+        longitude: userLongitude,
       },
       to: {
         latitude: gym.latitude.toNumber(),
